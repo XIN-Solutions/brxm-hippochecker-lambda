@@ -1,8 +1,9 @@
+package nz.xinsolutions.janitor;
+
 import org.apache.jackrabbit.core.CheckerRepository;
 import org.apache.jackrabbit.core.config.RepositoryConfig;
 import org.apache.tika.io.IOUtils;
 import org.onehippo.cms7.repository.checker.CheckerOptions;
-import org.onehippo.cms7.repository.checker.Main;
 import org.xml.sax.InputSource;
 
 import javax.jcr.RepositoryException;
@@ -138,16 +139,15 @@ public class LambdaHippoChecker {
      * @throws RepositoryException
      * @throws URISyntaxException
      */
-    protected CheckerRepository createRepository(CheckerOptions options, Properties properties) throws RepositoryException, URISyntaxException {
+    protected CheckerRepository createRepository(CheckerOptions options, Properties properties) throws RepositoryException {
         InputSource inputSource = new InputSource("file:///tmp/repository.xml");
         return new CheckerRepository(RepositoryConfig.create(inputSource, properties), options);
     }
 
     /**
-     * Run
-     * @param args
+     * Run the checker
      */
-    public static void main(String[] args) {
+    public static void run() {
         HippoCheckerConfig config = HippoCheckerConfig.fromEnvironmentVariables();
         LambdaHippoChecker checker = new LambdaHippoChecker(config);
         try {
@@ -159,6 +159,10 @@ public class LambdaHippoChecker {
             LOG.warning("Could not execute hippo checker, caused by: " + ex.getMessage());
             ex.printStackTrace();
         }
+    }
+
+    public static void main(String[] args) {
+        run();
     }
 
 }
