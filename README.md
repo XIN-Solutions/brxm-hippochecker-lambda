@@ -25,6 +25,19 @@ The `repository.xml` is generated based on the values in the environment variabl
 The `storage` location of the repository points at `/tmp`. Use the ephemeral storage settings in the lambda
 to provide it sufficient space for the repository you're working with. 
 
+### Build
+
+Build the lambda by executing:
+
+    $ mvn package
+
+Your target folder will now have two files:
+
+    brxm-janitor-lambda-1.1-SNAPSHOT-jar-with-dependencies.jar
+    brxm-janitor-lambda-1.1-SNAPSHOT.jar
+
+Upload the `with-dependencies` version to your Lambda.
+
 ### Lambda settings
 
 Some advice for creating the lambda:
@@ -51,4 +64,5 @@ To do this another Lambda repo exists:
 If your repository is sufficiently large so that the operations cannot be completed within 15 minutes
 (the longest runtime a Lambda allows) you should probably not use this, or use it on a normal computer the first time
 and run it daily at night. However, I imagine for most smaller repositories this will be a useful tool. 
+
 
