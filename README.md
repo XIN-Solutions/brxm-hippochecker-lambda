@@ -9,10 +9,10 @@ You can find the documentation for the Checker tool here:
 
 What this lambda does:
 
-* include the Cchecker tool JAR as a dependency
+* run the Checker's version history cleanup
+* run the Checker's binary cleanup
+* include the Checker tool JAR as a dependency
 * allow the user to configure repository information through environment variables
-* run the version history cleanup
-* run the binary cleanup
 
 The `repository.xml` is generated based on the values in the environment variables:
 
