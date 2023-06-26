@@ -20,7 +20,10 @@
   <DataSources>
     <DataSource name="ds1">
       <param name="driver" value="com.mysql.jdbc.Driver"/>
-      <param name="url" value="jdbc:mysql://${host}:${port}/${database}"/>
+      <!--
+        <param name="url" value="jdbc:mysql://${host}:${port}/${database}?characterEncoding=utf8"/>
+      -->
+      <param name="url" value="jdbc:mysql://${host}:${port}/${database}?useSSL=true&amp;characterEncoding=utf8"/>
       <param name="user" value="${username}"/>
       <param name="password" value="${password}"/>
       <param name="databaseType" value="mysql"/>

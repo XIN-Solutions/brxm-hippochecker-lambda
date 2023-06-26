@@ -25,7 +25,7 @@ The `repository.xml` is generated based on the values in the environment variabl
 The `storage` location of the repository points at `/tmp`. Use the ephemeral storage settings in the lambda
 to provide it sufficient space for the repository you're working with. 
 
-### Build
+### Build runnable JAR
 
 Build the lambda by executing:
 
@@ -59,10 +59,20 @@ To do this another Lambda repo exists:
 
 * https://github.com/XIN-Solutions/brxm-repositorylogs-maintenance-lambda
 
-### When not to use
+### When not to use as a Lambda
 
 If your repository is sufficiently large so that the operations cannot be completed within 15 minutes
 (the longest runtime a Lambda allows) you should probably not use this, or use it on a normal computer the first time
 and run it daily at night. However, I imagine for most smaller repositories this will be a useful tool. 
 
+### Run as docker
 
+Use the `xinsolutions/brxm-repository-janitor` and start it with the following environment variables to get a weekly 
+repository cleanup every sunday midnight in whatever the timezone of your server is set to.
+
+* MYSQL_HOST
+* MYSQL_USERNAME
+* MYSQL_PASSWORD
+* MYSQL_DATABASE
+
+Update `cronlauncher` and build your own version of the Docker image to change the time at which the cron should run.

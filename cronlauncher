@@ -1,0 +1,17 @@
+#!/usr/bin/env bash
+
+echo """
+SHELL=/bin/bash
+PATH=/sbin:/bin:/usr/sbin:/usr/bin
+MAILTO=root
+""" > /etc/crontab
+
+echo "JAVA_HOME=${JAVA_HOME}" >> /etc/crontab
+echo "MYSQL_HOST=${MYSQL_HOST}" >> /etc/crontab
+echo "MYSQL_USERNAME=${MYSQL_USERNAME}" >> /etc/crontab
+echo "MYSQL_PASSWORD=${MYSQL_PASSWORD}" >> /etc/crontab
+echo "MYSQL_DATABASE=${MYSQL_DATABASE}" >> /etc/crontab
+echo "* * * * * root echo \"*PING* `date`\" >/proc/1/fd/1 2>/proc/1/fd/2" >> /etc/crontab
+echo "0 0 * * SUN root /usr/bin/java -jar /var/app/brxm-janitor.jar > /proc/1/fd/1 2>/proc/1/fd/2" >> /etc/crontab
+
+exec /usr/sbin/crond -n -P -s
